@@ -1,0 +1,157 @@
+/*
+  REBEL Home Exterior Detailing Solutions — design tokens
+  Palette resolution: coral (from the real logo asset, #EA4333) is canonical.
+  Every color and font size used on the site must trace back to a variable here.
+*/
+
+:root {
+  /* ---- Brand / accent ---- */
+  --coral: #EA4333;          /* primary brand + CTA */
+  --coral-dark: #B92E20;     /* CTA hover/active */
+  --coral-darker: #8F2318;   /* CTA pressed */
+  --coral-light: #FCE9E5;    /* tinted backgrounds, badges */
+  --coral-line: #F4B7AC;     /* coral-tinted borders/dividers */
+
+  --gold: #D9A441;           /* secondary accent — highlights, ratings, badges */
+  --gold-light: #FBF0DC;
+
+  /* ---- Neutrals (warm, paired with coral rather than cool gray) ---- */
+  --charcoal: #1C1815;       /* fixed dark surface — footer, cta-banner (stays dark in both themes) */
+  --charcoal-2: #2A2420;     /* secondary dark surface */
+  --heading: #1C1815;        /* heading/icon text — flips with theme, unlike --charcoal */
+  --ink: #231F1C;            /* body text */
+  --muted: #7A6F63;          /* secondary/meta text */
+  --offwhite: #FBF9F6;       /* page background */
+  --white: #FFFFFF;
+  --cardbg: #F5F1EC;         /* card / section background */
+  --border: #E7DFD3;         /* hairline borders */
+
+  /* ---- Semantic (kept distinct from brand coral so they never get mistaken for a CTA) ---- */
+  --success: #3F7A5C;
+  --success-bg: #E7F0EA;
+  --warn: #B8801F;
+  --warn-bg: #FBF0DC;
+  --error: #A33B2E;
+  --error-bg: #F4E4E0;
+
+  /* ---- Typography ----
+     Display/heading: Georgia — carried over from the existing booking app's
+     considered serif choice (a real prior decision, unrelated to the palette
+     conflict). Body: Inter, a clean legible workhorse. Mono accent: for prices
+     and labels only, for a "we're precise about this" feel on a pricing-heavy site. */
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Type scale — fixed set, reused everywhere */
+  --text-xs: 0.75rem;    /* 12px — fine print, badges */
+  --text-sm: 0.875rem;   /* 14px — meta, labels */
+  --text-base: 1rem;     /* 16px — body */
+  --text-lg: 1.125rem;   /* 18px — lead paragraphs */
+  --text-xl: 1.375rem;   /* 22px — card headings */
+  --text-2xl: 1.75rem;   /* 28px — section headings */
+  --text-3xl: 2.25rem;   /* 36px — page headings */
+  --text-4xl: 3rem;      /* 48px — hero (mobile) */
+  --text-5xl: 3.75rem;   /* 60px — hero (desktop, small viewport) */
+  --text-6xl: 4.75rem;   /* 76px — hero (desktop, wide viewport) */
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-normal: 1.6;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* ---- Spacing scale ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* ---- Radii / shadow / motion ---- */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 1px 2px rgba(28, 24, 21, 0.06);
+  --shadow-md: 0 8px 24px rgba(28, 24, 21, 0.08);
+  --shadow-lg: 0 20px 48px rgba(28, 24, 21, 0.14);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 450ms;
+
+  --container-max: 1180px;
+}
+
+/* ---- Dark mode: a real second pass, not an inversion ----
+   Deepened neutrals, desaturated-but-legible coral, no pure black/white. */
+:root[data-theme="dark"] {
+  --ink: #F3EEE8;
+  --heading: #F8F4EF;
+  --muted: #B6ABA0;
+  --offwhite: #17130F;
+  --white: #1E1A16;
+  --cardbg: #221D19;
+  --border: #362F29;
+
+  --coral: #FF6A55;
+  --coral-dark: #FF8570;
+  --coral-darker: #FFA593;
+  --coral-light: #3A211C;
+  --coral-line: #5C2E26;
+
+  --gold: #E8BD6C;
+  --gold-light: #362A17;
+
+  --success: #6FBF98;
+  --success-bg: #1B2E24;
+  --warn: #E0AC55;
+  --warn-bg: #332711;
+  --error: #E17A69;
+  --error-bg: #35201C;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.45);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #F3EEE8;
+    --heading: #F8F4EF;
+    --muted: #B6ABA0;
+    --offwhite: #17130F;
+    --white: #1E1A16;
+    --cardbg: #221D19;
+    --border: #362F29;
+
+    --coral: #FF6A55;
+    --coral-dark: #FF8570;
+    --coral-darker: #FFA593;
+    --coral-light: #3A211C;
+    --coral-line: #5C2E26;
+
+    --gold: #E8BD6C;
+    --gold-light: #362A17;
+
+    --success: #6FBF98;
+    --success-bg: #1B2E24;
+    --warn: #E0AC55;
+    --warn-bg: #332711;
+    --error: #E17A69;
+    --error-bg: #35201C;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+    --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.45);
+  }
+}
