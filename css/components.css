@@ -528,6 +528,16 @@
 @media (min-width: 700px) {
   .gallery-featured { aspect-ratio: 21 / 9; }
 }
+/* Portrait override for single real photos shot vertically — avoids
+   forcing a wide crop that would cut off the subject. */
+.gallery-featured-portrait {
+  aspect-ratio: 3 / 4;
+  max-width: 480px;
+  margin-inline: auto;
+}
+@media (min-width: 700px) {
+  .gallery-featured-portrait { aspect-ratio: 3 / 4; }
+}
 
 /* Scroll variant: no handle, JS updates --reveal from scroll position */
 .reveal-compare--scroll .reveal-before { transition: none; }
