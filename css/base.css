@@ -47,7 +47,7 @@ h4 { font-size: var(--text-xl); }
 p { margin: 0 0 var(--space-4); }
 p.lead { font-size: var(--text-lg); color: var(--muted); }
 
-a { color: var(--coral); text-decoration: none; }
+a { color: var(--coral-text); text-decoration: none; }
 a:hover { color: var(--coral-dark); }
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
   outline: 2px solid var(--coral);
@@ -74,7 +74,7 @@ section.tight { padding-block: var(--space-8); }
   font-size: var(--text-xs);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--coral);
+  color: var(--coral-text);
   font-weight: var(--weight-medium);
   display: inline-block;
   margin-bottom: var(--space-3);
@@ -96,7 +96,7 @@ section.tight { padding-block: var(--space-8); }
   position: absolute;
   left: 0; top: -48px;
   background: var(--charcoal);
-  color: var(--white);
+  color: var(--on-dark);
   padding: var(--space-3) var(--space-4);
   z-index: 100;
   transition: top var(--duration-base) var(--ease-out);

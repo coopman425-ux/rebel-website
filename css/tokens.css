@@ -15,12 +15,42 @@
   --gold: #D9A441;           /* secondary accent — highlights, ratings, badges */
   --gold-light: #FBF0DC;
 
+  /* ---- Contrast-safe text roles ----
+     WHY THESE EXIST: --white/--heading/--ink all FLIP with theme. Using them
+     for text on a FIXED dark surface (--charcoal footer, CTA banner, photo
+     scrims) renders near-black on near-black in dark mode (measured 1.01:1).
+     These roles are the fix — pick by SURFACE, not by theme. */
+  --on-dark: #FFFFFF;        /* text on fixed dark surfaces — never flips. 17.6:1 on charcoal */
+  --on-dark-dim: rgba(255,255,255,0.72); /* secondary text on fixed dark surfaces */
+  --coral-on-dark: #FF6A55;  /* coral on charcoal: 6.25:1. Brand coral is only 4.49:1 there */
+  /* Coral sitting on a PHOTO (hero, booking header). A scrimmed photo is much
+     lighter than flat charcoal, and --coral-on-dark measures only 2.48:1 on the
+     hero / 3.51:1 on the booking header — both below the 4.5:1 floor at 12px.
+     Lightened until it clears AA on the brightest pixel of either photo
+     (4.61:1 and 6.53:1) while still reading as coral rather than white. */
+  --coral-on-photo: #FFC4B8;
+
+  /* Coral for TEXT on light surfaces. Brand coral (#EA4333) is 3.74:1 on
+     --offwhite, below the 4.5:1 AA floor for normal-size text. */
+  --coral-text: #BF2B1A;     /* 5.59:1 on --offwhite, 5.22:1 on --cardbg */
+
+  /* Coral as a button fill carrying --on-coral text. White on brand coral is
+     only 3.93:1, so the fill is darkened slightly for buttons only. */
+  --coral-btn: #D63524;      /* --on-coral (white) on this: 4.78:1 */
+  --on-coral: #FFFFFF;
+
+  /* Big decorative step numerals (.feature-index, 36px). Kept deliberately
+     soft, but --coral-line was only 1.72:1 — invisible. This clears the 3:1
+     large-text floor on every surface while staying quieter than --coral. */
+  --coral-numeral: #D95F47;  /* 3.29:1 on --cardbg, the worst-case surface */
+
   /* ---- Neutrals (warm, paired with coral rather than cool gray) ---- */
   --charcoal: #1C1815;       /* fixed dark surface — footer, cta-banner (stays dark in both themes) */
   --charcoal-2: #2A2420;     /* secondary dark surface */
   --heading: #1C1815;        /* heading/icon text — flips with theme, unlike --charcoal */
   --ink: #231F1C;            /* body text */
-  --muted: #7A6F63;          /* secondary/meta text */
+  --muted: #706559;          /* secondary/meta text — darkened from #7A6F63, which was
+                                only 4.36:1 on --cardbg (below the 4.5:1 AA floor) */
   --offwhite: #FBF9F6;       /* page background */
   --white: #FFFFFF;
   --cardbg: #F5F1EC;         /* card / section background */
@@ -109,6 +139,14 @@
   --coral-light: #3A211C;
   --coral-line: #5C2E26;
 
+  /* Contrast-safe roles, dark theme. --on-dark / --on-dark-dim /
+     --coral-on-dark deliberately do NOT appear here: they target fixed dark
+     surfaces that look identical in both themes, so they must not flip. */
+  --coral-text: #FF6A55;     /* 6.55:1 on --offwhite (dark) */
+  --coral-btn: #FF6A55;      /* bright coral reads better than a muddy dark fill */
+  --on-coral: #1C1815;       /* dark text on bright coral: 6.25:1 (white would be 2.82:1) */
+  --coral-numeral: #B25746;  /* 3.45:1 on --cardbg (dark) */
+
   --gold: #E8BD6C;
   --gold-light: #362A17;
 
@@ -139,6 +177,14 @@
     --coral-darker: #FFA593;
     --coral-light: #3A211C;
     --coral-line: #5C2E26;
+
+  /* Contrast-safe roles, dark theme. --on-dark / --on-dark-dim /
+     --coral-on-dark deliberately do NOT appear here: they target fixed dark
+     surfaces that look identical in both themes, so they must not flip. */
+  --coral-text: #FF6A55;     /* 6.55:1 on --offwhite (dark) */
+  --coral-btn: #FF6A55;      /* bright coral reads better than a muddy dark fill */
+  --on-coral: #1C1815;       /* dark text on bright coral: 6.25:1 (white would be 2.82:1) */
+  --coral-numeral: #B25746;  /* 3.45:1 on --cardbg (dark) */
 
     --gold: #E8BD6C;
     --gold-light: #362A17;

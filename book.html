@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="/rebel-website-review/css/base.css">
 <link rel="stylesheet" href="/rebel-website-review/css/components.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"REBEL Home Exterior Detailing Solutions","alternateName":"Rebel Exterior Detailing","slogan":"Clear Views. Better Impressions.","image":"https://rebelexteriordetailing.com/assets/rebel-logo.png","url":"https://rebelexteriordetailing.com","areaServed":[{"@type":"City","name":"Phoenix, AZ"},{"@type":"City","name":"Mesa, AZ"},{"@type":"City","name":"Glendale, AZ"},{"@type":"City","name":"Scottsdale, AZ"},{"@type":"City","name":"Gilbert, AZ"},{"@type":"City","name":"Peoria, AZ"},{"@type":"City","name":"Surprise, AZ"},{"@type":"City","name":"Buckeye, AZ"},{"@type":"City","name":"Sun City, AZ"},{"@type":"City","name":"Cave Creek, AZ"},{"@type":"City","name":"Paradise Valley, AZ"},{"@type":"City","name":"San Tan Valley, AZ"},{"@type":"City","name":"Verrado, AZ"},{"@type":"City","name":"Waddell, AZ"}],"priceRange":"$$","telephone":"206-316-7150","sameAs":["https://www.instagram.com/rebel.homedetailing"]}</script>
+
 <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important;}</style></noscript>
 </head>
 <body>
@@ -27,7 +28,7 @@
 <header class="site-header">
   <div class="container">
     <a class="brand" href="/rebel-website-review/index.html" aria-label="REBEL Home Exterior Detailing Solutions — home">
-      <img src="/rebel-website-review/assets/rebel-logo.png" alt="REBEL Home Exterior Detailing Solutions">
+      <img src="/rebel-website-review/assets/rebel-logo.png" alt="REBEL Home Exterior Detailing Solutions" width="112" height="28" loading="eager" decoding="async">
     </a>
     <nav aria-label="Primary">
       <ul class="nav-links">
@@ -41,7 +42,7 @@
       </ul>
     </nav>
     <div class="nav-actions">
-      <a class="btn btn-primary" href="https://rebel-business-app.onrender.com/go/booking">Book Now</a>
+      <a class="btn btn-primary" href="/rebel-website-review/book.html">Book Now</a>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
@@ -55,31 +56,138 @@
     <a href="/rebel-website-review/faq.html">FAQ</a>
     <a href="/rebel-website-review/about.html">About</a>
     <a href="/rebel-website-review/contact.html">Contact</a>
-    <a class="btn btn-primary" href="https://rebel-business-app.onrender.com/go/booking">Book Now</a>
+    <a class="btn btn-primary" href="/rebel-website-review/book.html">Book Now</a>
   </div>
 </header>
 <main id="main">
 
-<section class="page-header">
+<div class="book-page">
+  <div class="book-bg" aria-hidden="true">
+    <div class="book-bg-layer">
+      <picture>
+        <source type="image/webp" srcset="/rebel-website-review/assets/photos/home-hero.webp">
+        <img src="/rebel-website-review/assets/photos/home-hero.jpg" alt="" width="1200" height="1600" loading="eager" fetchpriority="high" decoding="async">
+      </picture>
+      <div class="hero-bg-scrim"></div>
+    </div>
+  </div>
+
+<section class="page-header page-header--on-photo">
   <div class="container">
     <div class="breadcrumbs"><a href="/rebel-website-review/index.html">Home</a> / Book Now</div>
     <span class="eyebrow">Book a Service</span>
     <h1>Booking takes about a minute</h1>
-    <p class="lead">Booking is handled through REBEL’s job management system — the same one our crew uses every day. Continue there to pick your service and a time that works.</p>
+    <p class="lead">Tell us what you need and when suits you. We'll confirm the details — and the price — before any work starts.</p>
   </div>
 </section>
 
 <section>
-  <div class="container">
-    <div class="cta-banner" data-reveal>
-      <h2>Continue to Booking</h2>
-      <p>You’ll be taken to REBEL’s secure booking page.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary btn-lg" href="https://rebel-business-app.onrender.com/go/booking">Continue to Booking →</a>
+  <div class="container booking-grid">
+    <div class="booking-panel" data-reveal>
+      <div class="form-status form-status--success" id="booking-success" hidden>
+        <h2>Request received</h2>
+        <p>Thanks — we'll reach out to confirm your appointment and go over pricing before anything is scheduled.</p>
+        <p>Need it sooner? Call <a href="tel:2063167150">206-316-7150</a> and we'll pick it up directly.</p>
       </div>
+
+      <div class="form-status form-status--error" id="booking-error" hidden>
+        <h2>That didn't go through</h2>
+        <p id="booking-error-detail">Something went wrong on our end. Your details are still filled in below — try again in a moment.</p>
+        <p>Rather not wait? Call <a href="tel:2063167150">Cooper at 206-316-7150</a> or <a href="tel:7405130867">Andrew at 740-513-0867</a>.</p>
+      </div>
+
+      <form id="booking-form" data-endpoint="https://rebel-business-app.onrender.com/api/public/booking" novalidate>
+        <div class="field-grid field-grid-2">
+          <div class="field">
+            <label for="bk-name">Name <span class="field-required" aria-hidden="true">*</span></label>
+            <input id="bk-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="bk-phone">Phone</label>
+            <input id="bk-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="602-555-0142">
+          </div>
+        </div>
+
+        <div class="field-grid field-grid-2" style="margin-top: var(--space-4)">
+          <div class="field">
+            <label for="bk-email">Email</label>
+            <input id="bk-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com">
+            <span class="field-hint" id="bk-contact-hint">A phone number or email — whichever you prefer we use.</span>
+          </div>
+          <div class="field">
+            <label for="bk-address">Address</label>
+            <input id="bk-address" name="address" type="text" autocomplete="street-address" placeholder="Street, city">
+          </div>
+        </div>
+
+        <div class="field-grid" style="margin-top: var(--space-4)">
+          <div class="field">
+            <label for="bk-service">Service</label>
+            <select id="bk-service" name="service">
+              <option value="">Pick a service</option>
+              <option value="Window Cleaning">Window Cleaning</option>
+            <option value="Screen Repair & Replacement">Screen Repair & Replacement</option>
+            <option value="Soft Wash — Full House Exterior Wash">Soft Wash — Full House Exterior Wash</option>
+            <option value="Soft Wash — Driveway & Patio">Soft Wash — Driveway & Patio</option>
+            <option value="Soft Wash — Roof">Soft Wash — Roof</option>
+            <option value="Pressure Washing">Pressure Washing</option>
+            <option value="Solar Panel Cleaning">Solar Panel Cleaning</option>
+              <option value="Not sure yet">Not sure yet — help me pick</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-grid field-grid-2" style="margin-top: var(--space-4)">
+          <div class="field">
+            <label for="bk-date">Preferred date</label>
+            <input id="bk-date" name="preferredDate" type="date">
+          </div>
+          <div class="field">
+            <label for="bk-time">Preferred time</label>
+            <select id="bk-time" name="preferredTime">
+              <option value="">Any time</option>
+              <option value="Morning">Morning</option>
+              <option value="Midday">Midday</option>
+              <option value="Afternoon">Afternoon</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-grid" style="margin-top: var(--space-4)">
+          <div class="field">
+            <label for="bk-notes">Anything else we should know?</label>
+            <textarea id="bk-notes" name="notes" placeholder="Two-story, gate code, hard water spots — whatever helps us quote it right."></textarea>
+          </div>
+        </div>
+
+        <div class="booking-actions">
+          <button class="btn btn-primary btn-lg" type="submit" id="booking-submit">Request My Appointment</button>
+          <span class="field-hint" role="status" aria-live="polite" id="booking-live"></span>
+        </div>
+        <p class="booking-fineprint">No payment now. We confirm the details and the price with you first.</p>
+      </form>
     </div>
+
+    <aside class="booking-aside" data-reveal>
+      <div class="card">
+        <h3>What happens next</h3>
+        <ul>
+          <li>We read every request the same day it comes in.</li>
+          <li>We confirm the scope and the price before scheduling.</li>
+          <li>Nothing is charged until the work is done.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Rather just call?</h3>
+        <ul>
+          <li>Cooper — <a href="tel:2063167150">206-316-7150</a></li>
+          <li>Andrew — <a href="tel:7405130867">740-513-0867</a></li>
+        </ul>
+      </div>
+    </aside>
   </div>
 </section>
+</div>
 
 </main>
 <div class="city-ticker" aria-hidden="true">
@@ -118,7 +226,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="/rebel-website-review/assets/rebel-logo.png" alt="REBEL Home Exterior Detailing Solutions">
+        <img src="/rebel-website-review/assets/rebel-logo.png" alt="REBEL Home Exterior Detailing Solutions" width="112" height="28" loading="lazy" decoding="async">
         <p>Clear Views. Better Impressions. Exterior cleaning for homes Across the Phoenix Valley.</p>
       </div>
       <div>
@@ -126,9 +234,7 @@
         <ul>
           <li><a href="/rebel-website-review/services/window-cleaning.html">Window Cleaning</a></li>
           <li><a href="/rebel-website-review/services/screen-repair.html">Screen Repair & Replacement</a></li>
-          <li><a href="/rebel-website-review/services/house-exterior-wash.html">Full House Exterior Wash</a></li>
-          <li><a href="/rebel-website-review/services/driveway-patio-soft-wash.html">Driveway & Patio Soft Wash</a></li>
-          <li><a href="/rebel-website-review/services/roof-soft-wash.html">Roof Soft Wash</a></li>
+          <li><a href="/rebel-website-review/services/soft-wash.html">Soft Wash</a></li>
           <li><a href="/rebel-website-review/services/pressure-washing.html">Pressure Washing</a></li>
           <li><a href="/rebel-website-review/services/solar-panel-cleaning.html">Solar Panel Cleaning</a></li>
         </ul>
@@ -149,7 +255,7 @@
           <li><a href="tel:2063167150">Cooper — 206-316-7150</a></li>
           <li><a href="tel:7405130867">Andrew — 740-513-0867</a></li>
           
-          <li><a href="https://rebel-business-app.onrender.com/go/booking">Book Now</a></li>
+          <li><a href="/rebel-website-review/book.html">Book Now</a></li>
           <li><a href="https://www.instagram.com/rebel.homedetailing" target="_blank" rel="noopener noreferrer">Instagram</a></li>
         </ul>
       </div>

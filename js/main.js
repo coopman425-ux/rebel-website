@@ -206,4 +206,86 @@
       statEls.forEach(animateCount);
     }
   }
+
+  // ---- Booking form ----
+  // Posts to the job-management app's public endpoint so requests land in the
+  // same inbox the crew already works from. The form is never cleared on
+  // failure — a dropped connection must not cost someone their typing.
+  var bookingForm = document.getElementById('booking-form');
+  if (bookingForm) {
+    var submitBtn = document.getElementById('booking-submit');
+    var liveMsg = document.getElementById('booking-live');
+    var successBox = document.getElementById('booking-success');
+    var errorBox = document.getElementById('booking-error');
+    var errorDetail = document.getElementById('booking-error-detail');
+
+    var showStatus = function (which, detail) {
+      successBox.hidden = which !== 'success';
+      errorBox.hidden = which !== 'error';
+      if (which === 'error' && detail) errorDetail.textContent = detail;
+      var box = which === 'success' ? successBox : errorBox;
+      if (box) box.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+    };
+
+    bookingForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = bookingForm.name.value.trim();
+      var phone = bookingForm.phone.value.trim();
+      var email = bookingForm.email.value.trim();
+
+      // Mirror the server's own rules so the common mistakes are caught before
+      // a round trip, without duplicating its logic any further than that.
+      bookingForm.name.setAttribute('aria-invalid', name ? 'false' : 'true');
+      if (!name) { liveMsg.textContent = 'Please add your name.'; bookingForm.name.focus(); return; }
+      if (!phone && !email) {
+        bookingForm.phone.setAttribute('aria-invalid', 'true');
+        bookingForm.email.setAttribute('aria-invalid', 'true');
+        liveMsg.textContent = 'Please add a phone number or an email so we can confirm.';
+        bookingForm.phone.focus();
+        return;
+      }
+      bookingForm.phone.setAttribute('aria-invalid', 'false');
+      bookingForm.email.setAttribute('aria-invalid', 'false');
+
+      var payload = {
+        name: name,
+        phone: phone,
+        email: email,
+        address: bookingForm.address.value.trim(),
+        service: bookingForm.service.value,
+        preferredDate: bookingForm.preferredDate.value || null,
+        preferredTime: bookingForm.preferredTime.value,
+        notes: bookingForm.notes.value.trim()
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      liveMsg.textContent = 'Sending your request…';
+      successBox.hidden = true;
+      errorBox.hidden = true;
+
+      fetch(bookingForm.dataset.endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) {
+          return res.json().catch(function () { return {}; }).then(function (data) {
+            if (!res.ok) throw new Error(data.error || 'Request failed (' + res.status + ')');
+            return data;
+          });
+        })
+        .then(function () {
+          bookingForm.hidden = true;
+          liveMsg.textContent = '';
+          showStatus('success');
+        })
+        .catch(function (err) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Request My Appointment';
+          liveMsg.textContent = '';
+          showStatus('error', err && err.message ? err.message : null);
+        });
+    });
+  }
 })();

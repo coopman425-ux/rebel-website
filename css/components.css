@@ -19,11 +19,11 @@
 .btn:active { transform: scale(0.98); }
 
 .btn-primary {
-  background: var(--coral);
-  color: var(--white);
+  background: var(--coral-btn);
+  color: var(--on-coral);
   box-shadow: var(--shadow-sm);
 }
-.btn-primary:hover { background: var(--coral-dark); color: var(--white); box-shadow: var(--shadow-md); }
+.btn-primary:hover { background: var(--coral-dark); color: var(--on-coral); box-shadow: var(--shadow-md); }
 .btn-primary:active { background: var(--coral-darker); }
 
 .btn-ghost {
@@ -31,14 +31,14 @@
   color: var(--heading);
   border-color: var(--border);
 }
-.btn-ghost:hover { border-color: var(--coral); color: var(--coral); }
+.btn-ghost:hover { border-color: var(--coral); color: var(--coral-text); }
 
 .btn-on-dark {
   background: transparent;
-  color: var(--white);
+  color: var(--on-dark);
   border-color: rgba(255,255,255,0.35);
 }
-.btn-on-dark:hover { border-color: var(--white); color: var(--white); background: rgba(255,255,255,0.08); }
+.btn-on-dark:hover { border-color: var(--on-dark); color: var(--on-dark); background: rgba(255,255,255,0.08); }
 
 .btn-lg { padding: 1.05rem 2rem; font-size: var(--text-lg); }
 
@@ -75,8 +75,8 @@
   font-size: var(--text-sm);
   font-weight: var(--weight-medium);
 }
-.nav-links a:hover { color: var(--coral); }
-.nav-links a[aria-current="page"] { color: var(--coral); }
+.nav-links a:hover { color: var(--coral-text); }
+.nav-links a[aria-current="page"] { color: var(--coral-text); }
 
 .nav-actions { display: flex; align-items: center; gap: var(--space-4); }
 .nav-actions .btn { display: none; }
@@ -167,15 +167,12 @@
     linear-gradient(90deg, rgba(28,24,21,0.75) 0%, rgba(28,24,21,0.25) 60%);
 }
 .hero--bg .container { position: relative; z-index: 1; }
-.hero--bg .eyebrow { color: var(--coral); }
-/* Literal white, not var(--white) — that token is a surface color that
-   flips to near-black in dark mode, which would make this text illegible
-   against the photo. */
-.hero--bg h1 { color: #FFFFFF; }
+.hero--bg .eyebrow { color: var(--coral-on-photo); }
+.hero--bg h1 { color: var(--on-dark); }
 .hero--bg .lead { color: rgba(255,255,255,0.82); }
 .hero--bg .hero-badges { border-top-color: rgba(255,255,255,0.2); }
-.hero--bg .hero-badge { color: rgba(255,255,255,0.72); }
-.hero--bg .hero-badge strong { color: #FFFFFF; }
+.hero--bg .hero-badge { color: var(--on-dark-dim); }
+.hero--bg .hero-badge strong { color: var(--on-dark); }
 
 /* ---- Page header (inner pages) ---- */
 .page-header {
@@ -185,7 +182,7 @@
 .page-header h1 { max-width: 24ch; }
 .breadcrumbs { font-size: var(--text-sm); color: var(--muted); margin-bottom: var(--space-4); }
 .breadcrumbs a { color: var(--muted); }
-.breadcrumbs a:hover { color: var(--coral); }
+.breadcrumbs a:hover { color: var(--coral-text); }
 
 /* ---- Cards / grid ---- */
 .grid { display: grid; gap: var(--space-6); }
@@ -212,7 +209,7 @@
 .card .price {
   font-family: var(--font-mono);
   font-size: var(--text-lg);
-  color: var(--coral);
+  color: var(--coral-text);
   font-weight: var(--weight-medium);
   margin: var(--space-3) 0;
   display: block;
@@ -265,7 +262,7 @@
   color: var(--muted);
   font-weight: var(--weight-medium);
 }
-.pricing-table td.price { font-family: var(--font-mono); color: var(--coral); font-weight: var(--weight-medium); white-space: nowrap; }
+.pricing-table td.price { font-family: var(--font-mono); color: var(--coral-text); font-weight: var(--weight-medium); white-space: nowrap; }
 .pricing-table td.note { color: var(--muted); font-size: var(--text-sm); }
 .pricing-note {
   font-size: var(--text-sm);
@@ -283,18 +280,16 @@
   border-bottom: 1px solid var(--border);
 }
 .trust-strip .grid { align-items: start; }
-.trust-item { display: flex; gap: var(--space-3); }
-.trust-item .mark { color: var(--coral); flex-shrink: 0; margin-top: 2px; }
 
 /* ---- CTA banner ---- */
 .cta-banner {
   background: var(--charcoal);
-  color: var(--white);
+  color: var(--on-dark);
   border-radius: var(--radius-lg);
   padding: var(--space-16) var(--space-8);
   text-align: center;
 }
-.cta-banner h2 { color: var(--white); }
+.cta-banner h2 { color: var(--on-dark); }
 .cta-banner p { color: rgba(255,255,255,0.72); max-width: 48ch; margin-inline: auto; }
 .cta-banner .hero-actions { justify-content: center; }
 
@@ -335,6 +330,9 @@
   margin-inline: auto;
 }
 .video-frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* The window/screen clips are vertical phone footage; the pressure washing
+   clip is landscape. Without this it gets cropped to a narrow portrait slot. */
+.video-frame--wide { aspect-ratio: 16 / 9; max-width: 100%; }
 
 .gallery-section + .gallery-section { margin-top: var(--space-16); }
 .gallery-section h2 { margin-bottom: var(--space-2); }
@@ -362,7 +360,7 @@
   margin-top: var(--space-24);
 }
 .site-footer a { color: rgba(255,255,255,0.85); }
-.site-footer a:hover { color: var(--coral); }
+.site-footer a:hover { color: var(--coral-on-dark); }
 .footer-grid {
   display: grid;
   gap: var(--space-8);
@@ -409,11 +407,6 @@
   .why-grid .feature-list { margin-top: 0; }
 }
 .why-photo .photo-tile { aspect-ratio: 3 / 4; }
-.photo-caption {
-  color: var(--muted);
-  font-size: var(--text-sm);
-  margin-top: var(--space-3);
-}
 
 /* ---- Feature list (distinct from card grid, avoids repetition) ---- */
 .feature-list {
@@ -432,9 +425,191 @@
 .feature-index {
   font-family: var(--font-display);
   font-size: var(--text-3xl);
-  color: var(--coral-line);
+  color: var(--coral-numeral);
   line-height: 1;
 }
+
+/* ---- Sub-services (merged service page: Soft Wash) ----
+   Same numbered-row rhythm as .feature-row, with a price rail so each surface
+   keeps its own real range instead of collapsing into one vague number. */
+.subservice-list { margin-top: var(--space-12); display: flex; flex-direction: column; }
+.subservice {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-4) var(--space-6);
+  padding-block: var(--space-8);
+  border-top: 1px solid var(--border);
+  scroll-margin-top: var(--space-24);
+}
+.subservice:last-child { border-bottom: 1px solid var(--border); }
+.subservice-body h3 { margin-bottom: var(--space-3); }
+.subservice-body p:last-child { margin-bottom: 0; }
+.subservice-price { grid-column: 2; }
+.subservice-price .price {
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  color: var(--coral-text);
+  font-weight: var(--weight-medium);
+  display: block;
+  margin-bottom: var(--space-1);
+}
+.subservice-price p { font-size: var(--text-sm); margin: 0; }
+@media (min-width: 900px) {
+  .subservice { grid-template-columns: auto 1fr auto; align-items: start; }
+  .subservice-price { grid-column: 3; text-align: right; min-width: 15ch; }
+}
+
+/* ---- Booking page background ----
+   Same photo and the same .hero-bg-scrim as the homepage hero, scoped to the
+   page body rather than the viewport so it never sits under the sticky header
+   (the header is translucent, and a dark photo behind it would put --ink nav
+   links on a dark backdrop — the exact black-on-black failure mode). */
+/* Charcoal base, matching .hero--bg. If the photo fails to load or is still
+   decoding, the header's fixed light text lands on charcoal rather than on the
+   light page background — which in light mode would be white-on-white. */
+.book-page { position: relative; background: var(--charcoal); }
+.book-page > section { position: relative; z-index: 1; }
+.book-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: var(--charcoal); /* covers the gap before the photo decodes */
+}
+/* Viewport-height band at the top of the page, framed exactly like the hero.
+   Stretching the photo over the full ~1800px page instead would flatten the
+   scrim's ramp and bury the image in near-solid charcoal. Deliberately NOT
+   position:sticky — its scroll container (.book-bg) never scrolls, so sticky
+   resolves to static anyway; .book-page's charcoal carries the rest. */
+.book-bg-layer { height: 100vh; }
+.book-bg-layer picture { display: block; height: 100%; }
+.book-bg-layer img { width: 100%; height: 100%; object-fit: cover; object-position: center 32%; display: block; }
+
+/* Same two-gradient scrim as the hero, but eased. The hero's ramp runs to 0.88
+   because its text is centred over the whole 88vh panel; here the only text on
+   the photo is the page header (top-left) — the form has its own opaque panel —
+   so the photo can stay visible below. Stop values are set from the measured
+   contrast of white text over the brightest pixels in the header band, not by
+   eye. See .page-header--on-photo below for the text roles. */
+.book-bg .hero-bg-scrim {
+  background:
+    linear-gradient(180deg,
+      rgba(28,24,21,0.90) 0%,
+      rgba(28,24,21,0.86) 28.5%, /* holds through the header text (ends at 28%) */
+      rgba(28,24,21,0.18) 34%,   /* opens up in the gap before the form panel */
+      rgba(28,24,21,0.12) 100%),
+    linear-gradient(90deg, rgba(28,24,21,0.30) 0%, rgba(28,24,21,0.04) 55%);
+}
+
+/* Header text sits directly on the photo, so it uses fixed on-dark roles —
+   never --heading/--ink, which flip and would vanish here in light mode. */
+.page-header--on-photo { border-bottom: none; }
+/* Full white rather than --on-dark-dim: at 14px over the photo the dimmed
+   variant measured 3.4:1 once the scrim was opened up enough to see the image. */
+.page-header--on-photo .breadcrumbs,
+.page-header--on-photo .breadcrumbs a { color: var(--on-dark); }
+.page-header--on-photo .breadcrumbs a:hover { color: var(--coral-on-photo); }
+.page-header--on-photo .eyebrow { color: var(--coral-on-photo); }
+.page-header--on-photo h1 { color: var(--on-dark); }
+/* Full white, not the hero's 0.82 alpha: at 390px the photo crops to brighter
+   sky behind this line and the translucent version measured 4.35:1. */
+.page-header--on-photo .lead { color: var(--on-dark); }
+
+/* The form rides on an opaque panel so every label, input, and status message
+   keeps its normal theme contrast instead of competing with the photo. */
+.booking-panel {
+  background: var(--cardbg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-lg);
+}
+@media (min-width: 700px) {
+  .booking-panel { padding: var(--space-12); }
+}
+
+/* ---- Booking form ----
+   Every value here resolves to a token, so the form inherits both themes and
+   the site's motion timings for free. Fields borrow the .card surface
+   treatment so the page reads as one system, not an embedded widget. */
+.booking-grid { display: grid; gap: var(--space-8); align-items: start; }
+@media (min-width: 900px) {
+  .booking-grid { grid-template-columns: 1.35fr 0.65fr; gap: var(--space-12); }
+}
+
+.field-grid { display: grid; gap: var(--space-4); }
+@media (min-width: 700px) {
+  .field-grid-2 { grid-template-columns: repeat(2, 1fr); }
+}
+
+.field { display: flex; flex-direction: column; gap: var(--space-2); }
+.field label {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--heading);
+}
+.field .field-hint { font-size: var(--text-xs); color: var(--muted); }
+.field-required { color: var(--coral-text); }
+
+.field input,
+.field select,
+.field textarea {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem var(--space-4);
+  width: 100%;
+  transition: border-color var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-fast) var(--ease-standard);
+}
+.field textarea { resize: vertical; min-height: 6.5rem; line-height: var(--leading-normal); }
+.field select { appearance: none; cursor: pointer;
+  /* caret drawn with a token color so it flips with the theme */
+  background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%),
+                    linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+  background-position: calc(100% - 1.15rem) 55%, calc(100% - 0.8rem) 55%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: var(--space-12);
+}
+.field input:hover,
+.field select:hover,
+.field textarea:hover { border-color: var(--coral-line); }
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  outline: none;
+  border-color: var(--coral);
+  box-shadow: 0 0 0 3px var(--coral-light);
+}
+.field input::placeholder,
+.field textarea::placeholder { color: var(--muted); opacity: 1; }
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] { border-color: var(--error); }
+
+.booking-actions { margin-top: var(--space-8); display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; }
+.booking-actions .btn[disabled] { opacity: 0.65; cursor: progress; }
+.booking-fineprint { font-size: var(--text-sm); color: var(--muted); margin: var(--space-4) 0 0; }
+
+/* Status messages — both states keep the user's input on screen. */
+.form-status { border-radius: var(--radius-md); padding: var(--space-6); margin-bottom: var(--space-8); }
+.form-status h2 { font-size: var(--text-2xl); margin-bottom: var(--space-2); }
+.form-status p:last-child { margin-bottom: 0; }
+.form-status--success { background: var(--success-bg); border-left: 3px solid var(--success); }
+.form-status--success h2 { color: var(--success); }
+.form-status--error { background: var(--error-bg); border-left: 3px solid var(--error); }
+.form-status--error h2 { color: var(--error); }
+.form-status a { color: var(--coral-text); font-weight: var(--weight-medium); }
+
+.booking-aside { position: sticky; top: calc(var(--space-16) + var(--space-8)); }
+.booking-aside .card + .card { margin-top: var(--space-4); }
+.booking-aside h3 { font-size: var(--text-lg); }
+.booking-aside ul { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+.booking-aside li { font-size: var(--text-sm); color: var(--muted); }
+.booking-aside a { color: var(--coral-text); }
 
 /* ---- Badge ---- */
 .badge {
@@ -497,7 +672,7 @@
   padding: var(--space-2) var(--space-3);
   border-radius: 999px;
   background: rgba(28, 24, 21, 0.65);
-  color: var(--white);
+  color: var(--on-dark);
   pointer-events: none;
 }
 .reveal-compare .reveal-tag-before { left: var(--space-3); }
@@ -600,8 +775,8 @@
   box-shadow: var(--shadow-lg);
 }
 .difference-header { max-width: 60ch; margin-bottom: var(--space-12); }
-.difference-header .eyebrow { color: var(--coral); }
-.difference-header h2 { color: var(--white); }
+.difference-header .eyebrow { color: var(--coral-on-dark); }
+.difference-header h2 { color: var(--on-dark); }
 .difference-header p { color: rgba(255, 255, 255, 0.7); }
 .difference-caption {
   color: rgba(255, 255, 255, 0.6);
@@ -614,7 +789,7 @@
 .stat-number {
   font-family: var(--font-display);
   font-size: var(--text-4xl);
-  color: var(--coral);
+  color: var(--coral-text);
   line-height: 1;
   display: block;
 }
@@ -628,8 +803,8 @@
 }
 .badge-link:hover,
 .badge-link:focus-visible {
-  background: var(--coral);
-  color: var(--white);
+  background: var(--coral-btn);
+  color: var(--on-coral);
 }
 
 /* ---- City ticker ---- */
@@ -667,14 +842,6 @@
   .city-ticker-track .city-ticker-item:nth-child(n + 6) { display: none; }
 }
 
-.scroll-hint {
-  text-align: center;
-  color: var(--muted);
-  font-size: var(--text-sm);
-  font-family: var(--font-mono);
-  letter-spacing: 0.04em;
-  margin-top: var(--space-3);
-}
 
 /* ---- Ambient background layer ----
    Every effect maps to something physically real in REBEL's world:
@@ -796,24 +963,13 @@
   padding: var(--space-2) var(--space-3);
   border-radius: 999px;
   background: rgba(28, 24, 21, 0.7);
-  color: var(--white);
+  color: var(--on-dark);
   pointer-events: none;
 }
 .split-tag-clean { left: var(--space-3); }
 .split-tag-dusty { right: var(--space-3); }
-.split-caption {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  padding: var(--space-8) var(--space-4) var(--space-3);
-  background: linear-gradient(transparent, rgba(28, 24, 21, 0.55) 45%, rgba(28, 24, 21, 0.92) 100%);
-  color: var(--white);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  text-align: center;
-}
-.split-copy h2 { color: var(--white); }
+.split-copy .eyebrow { color: var(--coral-on-dark); }
+.split-copy h2 { color: var(--on-dark); }
 .split-copy .lead { color: rgba(255, 255, 255, 0.72); }
 @media (prefers-reduced-motion: reduce) {
   .split-divider { transform: scaleY(1); transition: none; }
@@ -841,7 +997,7 @@
   cursor: pointer;
   transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard);
 }
-.method-btn.is-active { background: var(--coral); color: var(--white); }
+.method-btn.is-active { background: var(--coral-btn); color: var(--on-coral); }
 .method-btn:focus-visible { outline: 2px solid var(--coral); outline-offset: 2px; }
 
 /* ---- FAQ accordion (native <details>, no icon library) ---- */
@@ -865,7 +1021,7 @@
 }
 .faq-item summary::-webkit-details-marker { display: none; }
 .faq-item summary::marker { content: ''; }
-.faq-item summary:hover span:first-child { color: var(--coral); }
+.faq-item summary:hover span:first-child { color: var(--coral-text); }
 .faq-item summary span:first-child { transition: color var(--duration-fast) var(--ease-standard); }
 .faq-toggle {
   position: relative;
