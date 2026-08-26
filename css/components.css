@@ -781,6 +781,18 @@
 .difference-grid .reveal-compare:last-child {
   aspect-ratio: 4 / 3;
 }
+
+/* Second real before/after slider on the window-cleaning page, under Our
+   Process. Sized to the photo's real 3:4 ratio (same reasoning as the
+   difference-grid fix above) rather than reusing .gallery-featured, which
+   is a wide 16:9/21:9 box that would crop a portrait photo the same way. */
+.process-compare {
+  aspect-ratio: 3 / 4;
+  max-width: 420px;
+  margin: var(--space-8) auto 0;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
 .difference-header { max-width: 60ch; margin-bottom: var(--space-12); }
 .difference-header .eyebrow { color: var(--coral-on-dark); }
 .difference-header h2 { color: var(--on-dark); }
