@@ -282,6 +282,9 @@
           if (typeof fbq === 'function') {
             fbq('track', 'Lead', { content_name: payload.service });
           }
+          if (typeof gtag === 'function') {
+            gtag('event', 'form_submitted', { form_type: 'booking', service: payload.service });
+          }
         })
         .catch(function (err) {
           submitBtn.disabled = false;
