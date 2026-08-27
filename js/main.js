@@ -279,6 +279,9 @@
           bookingForm.hidden = true;
           liveMsg.textContent = '';
           showStatus('success');
+          if (typeof fbq === 'function') {
+            fbq('track', 'Lead', { content_name: payload.service });
+          }
         })
         .catch(function (err) {
           submitBtn.disabled = false;
