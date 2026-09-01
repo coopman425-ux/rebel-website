@@ -284,6 +284,7 @@
           }
           if (typeof gtag === 'function') {
             gtag('event', 'form_submitted', { form_type: 'booking', service: payload.service });
+            gtag('event', 'conversion', { send_to: 'AW-18363057662/FjL4CNOVvescEP6LmLRE' });
           }
         })
         .catch(function (err) {
