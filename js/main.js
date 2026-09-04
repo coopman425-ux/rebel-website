@@ -247,6 +247,14 @@
       bookingForm.phone.setAttribute('aria-invalid', 'false');
       bookingForm.email.setAttribute('aria-invalid', 'false');
 
+      var leadSource = '';
+      try { leadSource = sessionStorage.getItem('rebel-lead-source') || ''; } catch (e) {}
+
+      var notes = bookingForm.notes.value.trim();
+      if (leadSource) {
+        notes = (notes ? notes + '\n\n' : '') + 'Lead source: ' + leadSource;
+      }
+
       var payload = {
         name: name,
         phone: phone,
@@ -255,7 +263,8 @@
         service: bookingForm.service.value,
         preferredDate: bookingForm.preferredDate.value || null,
         preferredTime: bookingForm.preferredTime.value,
-        notes: bookingForm.notes.value.trim()
+        notes: notes,
+        leadSource: leadSource || 'direct'
       };
 
       submitBtn.disabled = true;
@@ -283,7 +292,7 @@
             fbq('track', 'Lead', { content_name: payload.service });
           }
           if (typeof gtag === 'function') {
-            gtag('event', 'form_submitted', { form_type: 'booking', service: payload.service });
+            gtag('event', 'form_submitted', { form_type: 'booking', service: payload.service, lead_source: payload.leadSource });
             gtag('event', 'conversion', { send_to: 'AW-18363057662/FjL4CNOVvescEP6LmLRE' });
           }
         })
