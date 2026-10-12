@@ -50,7 +50,7 @@ gtag('config', 'AW-18363057662');
 <header class="site-header">
   <div class="container">
     <a class="brand" href="/index.html" aria-label="REBEL Home Exterior Detailing Solutions — home">
-      <img src="/assets/rebel-logo.png" alt="REBEL Home Exterior Detailing Solutions" width="112" height="28" loading="eager" decoding="async">
+      <img src="/assets/rebel-logo.png" alt="REBEL Home Exterior Detailing Solutions" width="70" height="28" loading="eager" decoding="async">
     </a>
     <nav aria-label="Primary">
       <ul class="nav-links">
@@ -88,7 +88,7 @@ gtag('config', 'AW-18363057662');
     <div class="book-bg-layer">
       <picture>
         <source type="image/webp" srcset="/assets/photos/home-hero.webp">
-        <img src="/assets/photos/home-hero.jpg" alt="" width="1200" height="1600" loading="eager" fetchpriority="high" decoding="async">
+        <picture><source type="image/webp" srcset="/assets/photos/home-hero.webp"><img src="/assets/photos/home-hero.jpg" alt="" width="1200" height="1600" loading="eager" fetchpriority="high" decoding="async"></picture>
       </picture>
       <div class="hero-bg-scrim"></div>
     </div>
@@ -118,7 +118,13 @@ gtag('config', 'AW-18363057662');
         <p>Rather not wait? Call <a href="tel:2063167150">Cooper at 206-316-7150</a> or <a href="tel:7405130867">Andrew at 740-513-0867</a>.</p>
       </div>
 
-      <form id="booking-form" data-endpoint="https://rebel-business-app.onrender.com/api/public/booking" novalidate>
+      <!-- method="post" is a safety net, not a working no-JS path. js/main.js
+           intercepts submit and POSTs JSON to data-endpoint. Without this
+           attribute the form defaulted to GET on its own URL, so if main.js
+           ever failed to load, submitting would put the customer's name,
+           phone, email and home address in the query string — into their
+           history and any proxy log. POST keeps that out of the URL. -->
+      <form id="booking-form" method="post" data-endpoint="https://rebel-business-app.onrender.com/api/public/booking" novalidate>
         <div class="field-grid field-grid-2">
           <div class="field">
             <label for="bk-name">Name <span class="field-required" aria-hidden="true">*</span></label>
@@ -248,7 +254,7 @@ gtag('config', 'AW-18363057662');
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="/assets/rebel-logo.png" alt="REBEL Home Exterior Detailing Solutions" width="112" height="28" loading="lazy" decoding="async">
+        <img src="/assets/rebel-logo.png" alt="REBEL Home Exterior Detailing Solutions" width="70" height="28" loading="lazy" decoding="async">
         <p>Clear Views. Better Impressions. Exterior cleaning for homes Across the Phoenix Valley.</p>
       </div>
       <div>

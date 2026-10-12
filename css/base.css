@@ -27,6 +27,12 @@ body {
 
 img, svg, video { max-width: 100%; display: block; }
 
+/* <picture> only exists to let the browser pick the WebP source — it must not
+   create a layout box, or `width/height: 100%` on the inner <img> would
+   resolve against an inline wrapper instead of the real frame (.photo-tile,
+   .hero-photo, .card-photo all size their img that way). */
+picture { display: contents; }
+
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   color: var(--heading);

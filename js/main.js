@@ -227,6 +227,18 @@
       if (box) box.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
     };
 
+    // Floor the date picker at today. Set here rather than baked into the HTML
+    // at build time, because a build-time date goes stale the moment the site
+    // sits unbuilt for a day and would start allowing past dates again.
+    var todayStr = function () {
+      var d = new Date();
+      var m = String(d.getMonth() + 1);
+      var day = String(d.getDate());
+      return d.getFullYear() + '-' + (m.length < 2 ? '0' + m : m) + '-' + (day.length < 2 ? '0' + day : day);
+    };
+    var dateField = bookingForm.preferredDate;
+    if (dateField) dateField.min = todayStr();
+
     bookingForm.addEventListener('submit', function (e) {
       e.preventDefault();
       var name = bookingForm.name.value.trim();
@@ -246,6 +258,20 @@
       }
       bookingForm.phone.setAttribute('aria-invalid', 'false');
       bookingForm.email.setAttribute('aria-invalid', 'false');
+
+      // The form carries `novalidate`, so the date field's own `min` is never
+      // enforced by the browser on submit — a typed-in past date would sail
+      // through to the booking queue. Check it explicitly. Compared as plain
+      // YYYY-MM-DD strings to stay in the customer's local day, rather than
+      // via Date(), which would parse the value as UTC and reject "today"
+      // for anyone behind Greenwich.
+      if (dateField && dateField.value && dateField.value < todayStr()) {
+        dateField.setAttribute('aria-invalid', 'true');
+        liveMsg.textContent = 'Please pick a date that is today or later.';
+        dateField.focus();
+        return;
+      }
+      if (dateField) dateField.setAttribute('aria-invalid', 'false');
 
       var leadSource = '';
       try { leadSource = sessionStorage.getItem('rebel-lead-source') || ''; } catch (e) {}
