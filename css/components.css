@@ -567,6 +567,53 @@ a.card, a.card:hover { color: inherit; }
               box-shadow var(--duration-fast) var(--ease-standard);
 }
 .field textarea { resize: vertical; min-height: 6.5rem; line-height: var(--leading-normal); }
+
+/* SMS opt-in row. The box and its text sit side by side with the box pinned
+   to the first line of text; `align-items: start` keeps it there instead of
+   centring against a paragraph that wraps to four lines on a phone. */
+.consent { display: flex; align-items: flex-start; gap: var(--space-3); }
+.consent input[type="checkbox"] {
+  flex: none;
+  /* 1.15rem reads as a checkbox rather than a button, while the label's
+     generous line-height keeps the combined tap target comfortably past
+     the 44px minimum on a phone. */
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0;
+  /* Nudge down so the box optically centres on the first text line. */
+  margin-top: 0.15rem;
+  accent-color: var(--coral);
+  cursor: pointer;
+}
+.consent label {
+  /* 14px, not the 12px fine-print size. This is consent language the customer
+     is expected to actually read, and it runs ~10 lines at phone width — the
+     smaller size made that a wall of grey. */
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--muted);
+  cursor: pointer;
+}
+/* Links inside the label keep the label's own cursor/behaviour but need to
+   stay visibly distinct from the surrounding small print. */
+.consent label a { color: var(--coral-text); text-decoration: underline; }
+
+/* ---- Legal / policy prose ----
+   Capped measure so long policy text stays readable, with the heading and
+   list rhythm the marketing sections get for free from their own classes. */
+.legal { max-width: 70ch; }
+.legal h2 {
+  font-size: var(--text-xl);
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-3);
+  /* Clears the sticky header so /privacy.html#sms lands with the heading
+     visible rather than hidden behind the nav bar. */
+  scroll-margin-top: 5.5rem;
+}
+.legal p { margin-bottom: var(--space-4); }
+.legal ul { margin: 0 0 var(--space-4) var(--space-6); }
+.legal li { margin-bottom: var(--space-2); }
+.legal a { color: var(--coral-text); text-decoration: underline; }
 .field select { appearance: none; cursor: pointer;
   /* caret drawn with a token color so it flips with the theme */
   background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%),

@@ -290,7 +290,12 @@
         preferredDate: bookingForm.preferredDate.value || null,
         preferredTime: bookingForm.preferredTime.value,
         notes: notes,
-        leadSource: leadSource || 'direct'
+        leadSource: leadSource || 'direct',
+        // Always sent, true or false — the server records an explicit "no"
+        // as deliberately as a "yes", which is what an A2P consent audit
+        // needs to see. Optional chaining is avoided here to match the ES5
+        // style the rest of this file is written in.
+        smsConsent: !!(bookingForm.smsConsent && bookingForm.smsConsent.checked)
       };
 
       submitBtn.disabled = true;
